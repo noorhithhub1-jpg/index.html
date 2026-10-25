@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#08060f">
+<meta name="description" content="رورو الحلوة - جميع حساباتي وروابطي بمكان واحد">
+<title>رورو الحلوة | Zahra</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+  --bg: #08060f;
+  --purple: #a855f7;
+  --violet: #7c3aed;
+  --pink: #d946ef;
+  --text: #fff;
+  --muted: #a49ab8;
+  --glass: rgba(255,255,255,.045);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  isolation: isolate;
+}
+
+a, button, img, video {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a, button {
+  outline: none;
+}
+
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #c084fc;
+  outline-offset: 4px;
+}
+
+::selection {
+  background: #8b5cf6;
+  color: white;
+}
+
+/* الخلفية السوداء والبنفسجية */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 0%, #351052 0%, transparent 43%),
+    radial-gradient(ellipse at 100% 65%, #1d0b36 0%, transparent 35%),
+    #08060f;
+}
+
+.glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: .28;
+  animation: glowMove 12s ease-in-out infinite alternate;
+}
+
+.glow.one {
+  background: #8b5cf6;
+  top: 0;
+  right: -160px;
+}
+
+.glow.two {
+  background: #c026d3;
+  bottom: 5%;
+  left: -180px;
+  animation-delay: -5s;
+}
+
+@keyframes glowMove {
+  from { transform: translate(0,0) scale(.9); }
+  to { transform: translate(35px,55px) scale(1.2); }
+}
+
+/* الجزيئات البنفسجية */
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  bottom: -15px;
+  border-radius: 50%;
+  background: #c084fc;
+  box-shadow: 0 0 10px #a855f7, 0 0 24px #7c3aed;
+  opacity: 0;
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translate3d(0,0,0);
+    opacity: 0;
+  }
+  12% { opacity: .7; }
+  80% { opacity: .35; }
+  100% {
+    transform: translate3d(35px,-110vh,0);
+    opacity: 0;
+  }
+}
+
+.container {
+  width: min(100% - 30px, 460px);
+  margin: auto;
+  padding: 0 0 30px;
+  position: relative;
+}
+
+/* الهيدر */
+.top {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: max(20px, env(safe-area-inset-top));
+  margin-bottom: 12px;
+}
+
+.logo {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.logo span {
+  color: #c084fc;
+  text-shadow: 0 0 20px #a855f766;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 11px;
+  border: 1px solid #c084fc22;
+  background: #100b1bbd;
+  border-radius: 30px;
+  color: #d8cbe8;
+  font-size: 10px;
+  backdrop-filter: blur(12px);
+}
+
+.status i {
+  color: #c084fc;
+  font-size: 7px;
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+  50% { opacity: .35; }
+}
+
+/* الملف الشخصي والبانر */
+.profile {
+  position: relative;
+  text-align: center;
+  margin-bottom: 29px;
+  isolation: isolate;
+  animation: enter .8s ease both;
+}
+
+/* بانر الفيديو بأعلى الصفحة */
+.profile-banner {
+  position: relative;
+  width: calc(100% + 30px);
+  height: clamp(210px, 58vw, 285px);
+  margin-right: -15px;
+  margin-bottom: -62px;
+  overflow: hidden;
+  background: #12091e;
+  border-bottom: 1px solid #a855f733;
+  isolation: isolate;
+}
+
+.profile-banner video,
+.profile-banner .banner-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-banner video {
+  z-index: 0;
+  opacity: .88;
+}
+
+.banner-poster {
+  z-index: 1;
+  background-position: center;
+  background-size: cover;
+  transition: opacity .45s ease;
+  pointer-events: none;
+}
+
+.profile-banner.is-playing .banner-poster {
+  opacity: 0;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom,
+      rgba(8,6,15,.12) 0%,
+      rgba(8,6,15,.05) 35%,
+      rgba(8,6,15,.55) 70%,
+      #08060f 100%),
+    linear-gradient(90deg, rgba(60,15,100,.14), transparent, rgba(60,15,100,.14));
+}
+
+.banner-label {
+  position: absolute;
+  z-index: 3;
+  top: 17px;
+  left: 16px;
+  direction: ltr;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid #ffffff35;
+  border-radius: 30px;
+  background: #0b071b88;
+  backdrop-filter: blur(10px);
+  color: #f1e5ff;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.banner-label i {
+  color: #c084fc;
+  font-size: 8px;
+}
+
+.banner-control {
+  position: absolute;
+  z-index: 4;
+  top: 15px;
+  right: 15px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #ffffff40;
+  border-radius: 50%;
+  color: white;
+  background: #0b071b99;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.banner-control:active {
+  transform: scale(.94);
+}
+
+/* الصورة فوق الفيديو */
+.avatar {
+  position: relative;
+  z-index: 4;
+  width: 112px;
+  height: 112px;
+  padding: 3px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #d946ef, #7c3aed, #c084fc, #e879f9, #d946ef
+  );
+  box-shadow:
+    0 0 0 5px #08060f,
+    0 0 28px #a855f777;
+  animation: avatarGlow 4s ease-in-out infinite alternate;
+}
+
+.avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+  border: 4px solid #0b0712;
+}
+
+@keyframes avatarGlow {
+  to {
+    box-shadow: 0 0 0 5px #08060f, 0 0 40px #a855f799;
+  }
+}
+
+.name {
+  position: relative;
+  z-index: 4;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.8;
+}
+
+.verified {
+  color: #c084fc;
+  font-size: 15px;
+}
+
+.bio {
+  position: relative;
+  z-index: 4;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 2;
+  margin-top: 3px;
+}
+
+/* بانر الفيديو: زر مستقل */
+.banner-hint {
+  position: relative;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  color: #cbb6e8;
+  font-size: 10px;
+}
+
+.banner-hint i {
+  color: #c084fc;
+}
+
+/* عنوان الروابط */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #e6d9f5;
+  font-size: 13px;
+  margin-bottom: 13px;
+}
+
+.section-title i {
+  color: #c084fc;
+}
+
+/* بطاقات التواصل */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.link-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 75px;
+  padding: 13px;
+  color: white;
+  text-decoration: none;
+  border: 1px solid #ffffff0c;
+  border-radius: 18px;
+  background: linear-gradient(
+    120deg, rgba(255,255,255,.055), rgba(255,255,255,.018)
+  );
+  box-shadow: 0 6px 20px #0002;
+  backdrop-filter: blur(12px);
+  transition: transform .22s ease, border-color .22s ease,
+              background .22s ease;
+  animation: enter .65s ease both;
+}
+
+.link-card::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 18%;
+  bottom: 18%;
+  width: 2px;
+  border-radius: 10px;
+  background: #a855f7;
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.link-card:hover {
+  transform: translateY(-2px);
+  border-color: #a855f755;
+  background: #a855f70c;
+}
+
+.link-card:hover::before {
+  opacity: 1;
+}
+
+.link-card:nth-child(2) { animation-delay: .07s; }
+.link-card:nth-child(3) { animation-delay: .14s; }
+.link-card:nth-child(4) { animation-delay: .21s; }
+
+.link-icon {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  font-size: 21px;
+  border-radius: 14px;
+  background: #a855f714;
+  color: #c084fc;
+}
+
+.link-info {
+  flex: 1;
+}
+
+.link-info h3 {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.link-info p {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.arrow {
+  color: #80718f;
+  font-size: 12px;
+  transition: .2s;
+}
+
+.link-card:hover .arrow {
+  color: #c084fc;
+  transform: translateX(-3px);
+}
+
+/* زر المشاركة */
+.share {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px;
+  margin-top: 19px;
+  border: 1px solid #a855f744;
+  border-radius: 15px;
+  background: linear-gradient(100deg, #a855f719, #7c3aed12);
+  color: #eadcff;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.share:hover {
+  background: #a855f72c;
+  border-color: #a855f777;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 25px;
+  color: #766a87;
+  font-size: 10px;
+  line-height: 2.2;
+}
+
+.footer span {
+  color: #c084fc;
+}
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(13px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 360px) {
+  .container { width: calc(100% - 24px); }
+  .name { font-size: 23px; }
+  .avatar { width: 102px; height: 102px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="ambient" aria-hidden="true">
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+</div>
+
+<div id="particles" aria-hidden="true"></div>
+
+<main class="container">
+
+  <header class="top">
+    <div class="logo">برمجة<span>@Hayal_215</span></div>
+    <div class="status">
+      <i class="fa-solid fa-circle"></i>
+      طالبة سادس الله يعينها
+    </div>
+  </header>
+
+  <!-- الملف الشخصي مع بانر الفيديو بالخلف -->
+  <section class="profile">
+
+    <div class="profile-banner" id="profileBanner">
+
+      <!-- صورة احتياطية تظهر قبل تحميل الفيديو -->
+      <div class="banner-poster"
+           id="bannerPoster"
+           style="background-image:url('https://k.top4top.io/p_3950tf1to1.jpg')">
+      </div>
+
+      <!-- ضع رابط فيديو MP4 مباشر مكان الرابط أدناه -->
+      <video
+        id="profileVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="https://c.top4top.io/m_3950jq6xo1.mp4"
+        aria-label="فيديو خلفية الصفحة">
+        <source src="https://c.top4top.io/m_3950jq6xo1.mp4" type="video/mp4">
+      </video>
+
+      <div class="banner-overlay"></div>
+
+      <div class="banner-label">
+        <i class="fa-solid fa-sparkles"></i>
+        رورو الحلوة
+      </div>
+
+      <button class="banner-control"
+              id="bannerControl"
+              type="button"
+              aria-label="إيقاف أو تشغيل حركة الفيديو">
+        <i class="fa-solid fa-pause" id="bannerControlIcon"></i>
+      </button>
+
+    </div>
+
+    <!-- الصورة تظهر أمام البانر -->
+    <div class="avatar">
+      <img
+        src="https://k.top4top.io/p_3950tf1to1.jpg"
+        alt="الصورة الشخصية لـ Zahra">
+    </div>
+
+    <h1 class="name">
+      𝐙𝐚𝐡𝐫𝐚.🎀
+      <i class="fa-solid fa-circle-check verified"></i>
+    </h1>
+
+<p class="bio">
+  عَـسَى رَبّــكم أَن يُـبَدِّل<br>
+  أحْزَانكُم فَرَحاً قريباً ❣️😔
+</p>
+
+    <div class="banner-hint">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+      عالم من الروابط، بتصميم مختلف
+    </div>
+
+  </section>
+
+  <h2 class="section-title">
+    <i class="fa-solid fa-link"></i>
+    حساباتي وروابطي
+  </h2>
+
+  <nav class="links">
+
+    <a class="link-card telegram"
+       href="https://t.me/xzr_z"
+       target="_blank" rel="noopener noreferrer">
+      <div class="link-icon">
+        <i class="fa-brands fa-telegram"></i>
+      </div>
+      <div class="link-info">
+        <h3>تيليجرام الشخصي</h3>
+        <p>راسلني مباشرة على تيليجرام</p>
+      </div>
+      <i class="fa-solid fa-arrow-left arrow"></i>
+    </a>
+
+    <a class="link-card snapchat"
+       href="https://www.snapchat.com/add/xzr_z"
+       target="_blank" rel="noopener noreferrer">
+      <div class="link-icon">
+        <i class="fa-brands fa-snapchat"></i>
+      </div>
+      <div class="link-info">
+        <h3>سناب شات</h3>
+        <p>تابع يومياتي والستوري</p>
+      </div>
+      <i class="fa-solid fa-arrow-left arrow"></i>
+    </a>
+
+    <a class="link-card instagram"
+       href="https://www.instagram.com/USERNAME/"
+       target="_blank" rel="noopener noreferrer">
+      <div class="link-icon">
+        <i class="fa-brands fa-instagram"></i>
+      </div>
+      <div class="link-info">
+        <h3>إنستغرام</h3>
+        <p>تابع صوري وآخر منشوراتي</p>
+      </div>
+      <i class="fa-solid fa-arrow-left arrow"></i>
+    </a>
+
+    <a class="link-card channel"
+       href="https://t.me/CHANNEL"
+       target="_blank" rel="noopener noreferrer">
+      <div class="link-icon">
+        <i class="fa-solid fa-bullhorn"></i>
+      </div>
+      <div class="link-info">
+        <h3>قناة تيليجرام</h3>
+        <p>انضم للقناة وتابع الجديد</p>
+      </div>
+      <i class="fa-solid fa-arrow-left arrow"></i>
+    </a>
+
+  </nav>
+
+  <button class="share" id="shareButton" type="button">
+    <i class="fa-solid fa-share-nodes"></i>
+    مشاركة صفحتي
+  </button>
+
+  <footer class="footer">
+    صُنعت بكل حب <span>♥</span><br>
+    © <span id="year"></span> رورو الحلوة
+  </footer>
+
+</main>
+
+<script>
+/* السنة الحالية */
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+/* النقاط البنفسجية المتحركة */
+const particleLayer = document.getElementById("particles");
+
+for (let i = 0; i < 32; i++) {
+  const dot = document.createElement("span");
+  dot.className = "particle";
+
+  const size = Math.random() * 3 + 1;
+
+  dot.style.width = size + "px";
+  dot.style.height = size + "px";
+  dot.style.left = Math.random() * 100 + "%";
+  dot.style.animationDuration =
+    (9 + Math.random() * 16) + "s";
+  dot.style.animationDelay =
+    (-Math.random() * 20) + "s";
+
+  particleLayer.appendChild(dot);
+}
+
+/* التحكم بفيديو الخلفية */
+const profileBanner = document.getElementById("profileBanner");
+const profileVideo = document.getElementById("profileVideo");
+const bannerPoster = document.getElementById("bannerPoster");
+const bannerControl = document.getElementById("bannerControl");
+const bannerControlIcon = document.getElementById("bannerControlIcon");
+
+function updateBanner() {
+  const playing = !profileVideo.paused && !profileVideo.ended;
+
+  profileBanner.classList.toggle("is-playing", playing);
+
+  bannerControlIcon.className = playing
+    ? "fa-solid fa-pause"
+    : "fa-solid fa-play";
+
+  bannerControl.setAttribute(
+    "aria-label",
+    playing ? "إيقاف حركة الفيديو" : "تشغيل حركة الفيديو"
+  );
+}
+
+bannerControl.addEventListener("click", async () => {
+  if (profileVideo.paused) {
+    try {
+      await profileVideo.play();
+    } catch (error) {
+      bannerControlIcon.className = "fa-solid fa-circle-exclamation";
+    }
+  } else {
+    profileVideo.pause();
+  }
+
+  updateBanner();
+});
+
+profileVideo.addEventListener("play", updateBanner);
+profileVideo.addEventListener("pause", updateBanner);
+profileVideo.addEventListener("ended", updateBanner);
+
+profileVideo.addEventListener("error", () => {
+  bannerPoster.style.opacity = "1";
+  bannerControlIcon.className = "fa-solid fa-circle-exclamation";
+});
+
+profileVideo.addEventListener("playing", () => {
+  bannerPoster.style.opacity = "0";
+});
+
+/* محاولة تشغيل تلقائي صامت */
+profileVideo.play().then(() => {
+  updateBanner();
+}).catch(() => {
+  updateBanner();
+});
+
+/* مشاركة الصفحة */
+document.getElementById("shareButton").addEventListener("click", async () => {
+  const data = {
+    title: document.title,
+    text: "تعال شوف حساباتي وروابطي ✨",
+    url: window.location.href
+  };
+
+  try {
+    if (navigator.share) {
+      await navigator.share(data);
+    } else if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(data.url);
+      alert("تم نسخ رابط الصفحة!");
+    } else {
+      window.prompt("انسخ رابط الصفحة:", data.url);
+    }
+  } catch (error) {
+    if (error.name !== "AbortError") {
+      alert("تعذرت المشاركة. حاول مرة أخرى.");
+    }
+  }
+});
+</script>
+
+</body>
+</html>
