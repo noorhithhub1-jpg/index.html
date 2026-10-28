@@ -1010,6 +1010,578 @@
   }
 }
 
+/* Cinematic thin promo */
+.cinema-promo {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: clamp(115px, 29vw, 175px);
+  margin: 18px auto;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 13px;
+  background: #160d20;
+  border: 1px solid rgba(255, 255, 255, .12);
+  text-decoration: none;
+  color: #fff;
+  direction: rtl;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .22);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cinema-promo__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  transform: scale(1.16);
+  filter: brightness(.72) saturate(1.15);
+  transition: transform 1s ease, filter 1s ease;
+}
+
+.cinema-promo__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg,
+      rgba(13, 7, 20, .05) 0%,
+      rgba(13, 7, 20, .25) 35%,
+      rgba(13, 7, 20, .88) 100%),
+    linear-gradient(0deg,
+      rgba(12, 6, 18, .45),
+      transparent 70%);
+}
+
+.cinema-promo__text {
+  position: absolute;
+  z-index: 3;
+  right: 17px;
+  top: 50%;
+  width: calc(100% - 34px);
+  transform: translateY(-42%);
+  opacity: 0;
+}
+
+.cinema-promo__label {
+  display: inline-block;
+  color: #ffc5df;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .4px;
+  margin-bottom: 5px;
+}
+
+.cinema-promo__text h2 {
+  margin: 0 0 9px;
+  color: white;
+  font-size: clamp(15px, 4vw, 22px);
+  font-weight: 900;
+  line-height: 1.5;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .35);
+}
+
+.cinema-promo__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, .45);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .12);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cinema-promo__glow {
+  position: absolute;
+  z-index: 2;
+  top: -60%;
+  bottom: -60%;
+  left: -45%;
+  width: 25%;
+  pointer-events: none;
+  transform: rotate(18deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, .32),
+    transparent
+  );
+}
+
+.cinema-promo__line {
+  position: absolute;
+  z-index: 4;
+  bottom: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, #ffb4d7, #fff, #c17cff);
+}
+
+
+/* ===== ZAHRA PREMIUM CINEMA ===== */
+.zahra-cinema {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+height: auto;
+  margin: 18px auto;
+  overflow: hidden;
+  isolation: isolate;
+  direction: rtl;
+  color: #fff;
+  text-decoration: none;
+  background: #100b18;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .24);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.zahra-cinema__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 40%;
+  transform: scale(1.13);
+  opacity: .15;
+  filter: brightness(.8) saturate(1.1);
+  transition:
+    transform 1s cubic-bezier(.2,.7,.2,1),
+    filter .6s ease,
+    opacity .8s ease;
+}
+
+.zahra-cinema__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(12, 7, 18, .04) 0%,
+      rgba(12, 7, 18, .32) 38%,
+      rgba(12, 7, 18, .93) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(10, 5, 16, .42),
+      transparent 75%
+    );
+}
+
+.zahra-cinema__content {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  right: 19px;
+  width: calc(100% - 38px);
+  transform: translateY(-43%);
+  opacity: 0;
+}
+
+.zahra-cinema__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 5px;
+  color: #f6c5e5;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.zahra-cinema__dot {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: #ff8ac8;
+  box-shadow: 0 0 10px #ff63b5;
+}
+
+.zahra-cinema__content h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(17px, 4.5vw, 24px);
+  line-height: 1.5;
+  font-weight: 900;
+  letter-spacing: -.4px;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, .5);
+}
+
+.zahra-cinema__content p {
+  margin: 2px 0 9px;
+  color: rgba(255, 255, 255, .78);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.zahra-cinema__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 6px 11px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .10);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  backdrop-filter: blur(8px);
+  transition: background .25s ease;
+}
+
+.zahra-cinema__arrow {
+  display: inline-block;
+  font-size: 15px;
+  transition: transform .25s ease;
+}
+
+.zahra-cinema__shine {
+  position: absolute;
+  z-index: 2;
+  inset-block: -80%;
+  left: -55%;
+  width: 24%;
+  transform: rotate(20deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, .27),
+    transparent
+  );
+  pointer-events: none;
+  opacity: 0;
+}
+
+.zahra-cinema__progress {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #e58bff, #ff9fce, #fff);
+  box-shadow: 0 0 9px rgba(255, 128, 210, .55);
+}
+
+.zahra-cinema__corner {
+  position: absolute;
+  z-index: 3;
+  top: 9px;
+  left: 9px;
+  width: 16px;
+  height: 16px;
+  border-top: 1px solid rgba(255, 255, 255, .55);
+  border-left: 1px solid rgba(255, 255, 255, .55);
+  opacity: .7;
+}
+
+/* Entrance sequence */
+.zahra-cinema.is-visible .zahra-cinema__img {
+  animation: zahraImageReveal 1.5s ease-out forwards,
+             zahraImageDrift 8s 1.5s ease-in-out infinite alternate;
+}
+
+.zahra-cinema.is-visible .zahra-cinema__content {
+  animation: zahraTextReveal .8s .28s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+.zahra-cinema.is-visible .zahra-cinema__shine {
+  animation: zahraShine 1.2s .65s ease-in-out forwards;
+}
+
+.zahra-cinema.is-visible .zahra-cinema__progress {
+  animation: zahraProgress 1.5s .3s ease-out forwards;
+}
+
+.zahra-cinema:hover .zahra-cinema__img {
+  transform: scale(1.08);
+  filter: brightness(.95) saturate(1.2);
+}
+
+.zahra-cinema:hover .zahra-cinema__cta {
+  background: rgba(255, 255, 255, .2);
+}
+
+.zahra-cinema:hover .zahra-cinema__arrow {
+  transform: translateX(-4px);
+}
+
+.zahra-cinema:active {
+  filter: brightness(.92);
+}
+
+.zahra-cinema:focus-visible {
+  outline: 2px solid #f6a7d7;
+  outline-offset: 3px;
+}
+
+@keyframes zahraImageReveal {
+  0% {
+    opacity: .15;
+    transform: scale(1.17);
+    filter: brightness(.3) blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.06);
+    filter: brightness(.8) blur(0);
+  }
+}
+
+@keyframes zahraImageDrift {
+  from { transform: scale(1.06); }
+  to { transform: scale(1.12); }
+}
+
+@keyframes zahraTextReveal {
+  from {
+    opacity: 0;
+    transform: translate(15px, -43%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+
+@keyframes zahraShine {
+  0% { left: -55%; opacity: 0; }
+  15% { opacity: 1; }
+  100% { left: 135%; opacity: 0; }
+}
+
+@keyframes zahraProgress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@media (max-width: 380px) {
+  .zahra-cinema {
+    height: 112px;
+    border-radius: 9px;
+  }
+
+  .zahra-cinema__content {
+    right: 12px;
+    width: calc(100% - 24px);
+  }
+
+  .zahra-cinema__content h2 {
+    font-size: 16px;
+  }
+
+  .zahra-cinema__content p {
+    margin-bottom: 6px;
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zahra-cinema.is-visible .zahra-cinema__img,
+  .zahra-cinema.is-visible .zahra-cinema__content,
+  .zahra-cinema.is-visible .zahra-cinema__shine,
+  .zahra-cinema.is-visible .zahra-cinema__progress {
+    animation: none !important;
+  }
+
+  .zahra-cinema__img {
+    opacity: 1;
+    transform: none;
+    filter: brightness(.8);
+  }
+
+  .zahra-cinema__content {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+
+  .zahra-cinema__progress {
+    width: 100%;
+  }
+}
+
+
+/* ===== PREMIUM NEON COLORS ===== */
+.zahra-cinema {
+  background: #10071e;
+  border: 1px solid rgba(215, 142, 255, .48);
+  border-radius: 14px;
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, .28),
+    0 0 18px rgba(173, 76, 255, .12);
+  isolation: isolate;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+.zahra-cinema__overlay {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(15, 5, 28, .05) 0%,
+      rgba(23, 7, 37, .35) 38%,
+      rgba(13, 5, 24, .92) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(8, 3, 18, .58),
+      transparent 75%
+    );
+}
+
+.zahra-cinema__eyebrow {
+  color: #ffc3ed;
+  text-shadow: 0 0 12px rgba(255, 95, 209, .35);
+}
+
+.zahra-cinema__dot {
+  background: #ff8be8;
+  box-shadow:
+    0 0 8px #ff61dc,
+    0 0 18px rgba(255, 97, 220, .65);
+}
+
+.zahra-cinema__content h2 {
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #ffd4f2 45%,
+    #d9b7ff 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .4));
+}
+
+.zahra-cinema__cta {
+  background: linear-gradient(
+    110deg,
+    rgba(179, 91, 255, .38),
+    rgba(255, 102, 195, .24)
+  );
+  border: 1px solid rgba(255, 197, 246, .48);
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, .04);
+}
+
+.zahra-cinema__progress {
+  background: linear-gradient(
+    90deg,
+    #a855f7,
+    #ff5ecb,
+    #ffd6f6,
+    #a855f7
+  );
+  box-shadow: 0 0 12px rgba(255, 94, 203, .75);
+}
+
+/* Floating emoji intro */
+.zahra-cinema__emojis {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.zahra-cinema__emojis span {
+  position: absolute;
+  bottom: -35px;
+  left: var(--x, 50%);
+  font-size: clamp(17px, 4.5vw, 28px);
+  opacity: 0;
+  filter: drop-shadow(0 0 8px rgba(255, 132, 231, .7));
+  will-change: transform, opacity;
+}
+
+.zahra-cinema__emojis span:nth-child(1) { --x: 12%; --drift: -18px; }
+.zahra-cinema__emojis span:nth-child(2) { --x: 27%; --drift: 15px; }
+.zahra-cinema__emojis span:nth-child(3) { --x: 42%; --drift: -12px; }
+.zahra-cinema__emojis span:nth-child(4) { --x: 58%; --drift: 18px; }
+.zahra-cinema__emojis span:nth-child(5) { --x: 72%; --drift: -16px; }
+.zahra-cinema__emojis span:nth-child(6) { --x: 84%; --drift: 12px; }
+.zahra-cinema__emojis span:nth-child(7) { --x: 94%; --drift: -10px; }
+
+.zahra-cinema.is-visible .zahra-cinema__emojis {
+  animation: emojiOverlay 2s ease-out forwards;
+}
+
+.zahra-cinema.is-visible .zahra-cinema__emojis span {
+  animation: emojiFloat 1.8s ease-out forwards;
+}
+
+.zahra-cinema.is-visible .zahra-cinema__emojis span:nth-child(2) {
+  animation-delay: .08s;
+}
+.zahra-cinema.is-visible .zahra-cinema__emojis span:nth-child(3) {
+  animation-delay: .16s;
+}
+.zahra-cinema.is-visible .zahra-cinema__emojis span:nth-child(4) {
+  animation-delay: .04s;
+}
+.zahra-cinema.is-visible .zahra-cinema__emojis span:nth-child(5) {
+  animation-delay: .2s;
+}
+.zahra-cinema.is-visible .zahra-cinema__emojis span:nth-child(6) {
+  animation-delay: .1s;
+}
+.zahra-cinema.is-visible .zahra-cinema__emojis span:nth-child(7) {
+  animation-delay: .24s;
+}
+
+@keyframes emojiOverlay {
+  0%, 72% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes emojiFloat {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(.35) rotate(-20deg);
+  }
+  18% {
+    opacity: 1;
+    transform: translate3d(0, -15px, 0) scale(1.2) rotate(8deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate3d(var(--drift), -90px, 0) scale(1) rotate(-8deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift), -125px, 0) scale(.7) rotate(15deg);
+  }
+}
+
+/* Mobile keeps the YouTube 16:9 shape */
+@media (max-width: 380px) {
+  .zahra-cinema {
+    border-radius: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zahra-cinema.is-visible .zahra-cinema__emojis,
+  .zahra-cinema.is-visible .zahra-cinema__emojis span {
+    animation: none !important;
+    opacity: 0;
+  }
+}
 
   </style>
 </head>
@@ -1035,10 +1607,59 @@
     </section>
 
     <section class="toolbar">
-      <div class="section-label">
-        <i class="fa-solid fa-sparkles" aria-hidden="true"></i>
-        <span>استكشف الكروت</span>
-      </div>
+
+
+<!-- Zahra | Premium Cinematic Banner -->
+<a href="https://amaranth-adda-27.tiiny.site"
+   class="zahra-cinema"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="اكتشف المزيد">
+
+
+<!-- Animated emoji intro -->
+<div class="zahra-cinema__emojis" aria-hidden="true">
+  <span>✨</span>
+  <span>💜</span>
+  <span>🔥</span>
+  <span>🙊</span>
+  <span>💖</span>
+  <span>⚡</span>
+  <span>🌟</span>
+</div>
+
+
+  <img
+    class="zahra-cinema__img"
+    src="https://h.top4top.io/p_3953i6jhg1.jpg"
+    alt="اكتشف المحتوى المميز"
+    fetchpriority="high"
+  >
+
+  <div class="zahra-cinema__overlay"></div>
+
+  <div class="zahra-cinema__content">
+    <div class="zahra-cinema__eyebrow">
+      <span class="zahra-cinema__dot"></span>
+      <span>باوع وما راح تتندم </span>
+    </div>
+
+    <h2>فيديوهات عربي / عراقية</h2>
+
+    <p>لا تنسى شارك الموقع لاصدقائك</p>
+
+    <span class="zahra-cinema__cta">
+      يلا باوع 🔥🔥🔥
+      <span class="zahra-cinema__arrow">←</span>
+    </span>
+  </div>
+
+  <span class="zahra-cinema__shine"></span>
+  <span class="zahra-cinema__progress"></span>
+  <span class="zahra-cinema__corner"></span>
+</a>
+
+
 
       <div class="toolbar-side">
         <select id="countryFilter" aria-label="تصفية حسب الدولة">
@@ -1721,5 +2342,29 @@
     render();
     updateScrollUI();
   </script>
+  
+  
+<script>
+(() => {
+  const banners = document.querySelectorAll('.zahra-cinema');
+
+  if (!('IntersectionObserver' in window)) {
+    banners.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  banners.forEach(el => observer.observe(el));
+})();
+</script>
+
 </body>
 </html>
