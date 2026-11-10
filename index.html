@@ -3,66 +3,2032 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#08090d">
-<title>مشغل الفيديو</title>
+<meta name="theme-color" content="#090909">
+<meta name="description" content="مسلسلات وأفلام نور بوكس">
+<title>نور بوكس | NOORBOX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root{
+--bg:#090909;
+--surface:#171717;
+--surface2:#222;
+--text:#fff;
+--muted:#aaa;
+--red:#e50914;
+--red2:#b20710;
+--border:#292929;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{
+margin:0;min-height:100vh;overflow-x:hidden;
+color:var(--text);background:var(--bg);
+font-family:"Alexandria",sans-serif
+}
+body,input,select,button,a{font-family:"Alexandria",sans-serif}
+button,input,select{font:inherit}
+button{color:inherit}
+[hidden]{display:none!important}
+
+/* HEADER */
+.top-banner{
+position:sticky;top:0;z-index:100;
+background:rgba(9,9,9,.96);
+border-bottom:1px solid #242424;
+box-shadow:0 5px 25px #0008;
+backdrop-filter:blur(15px)
+}
+.banner-inner{
+width:min(1100px,94%);min-height:65px;margin:auto;
+display:flex;align-items:center;justify-content:space-between;gap:12px
+}
+.brand{
+display:flex;align-items:center;gap:10px;
+color:white;text-decoration:none;font-size:19px;font-weight:800
+}
+.brand-icon{
+display:grid;place-items:center;width:37px;height:37px;
+color:white;background:var(--red);border-radius:9px
+}
+.brand-name{color:white}
+.brand-name span{color:var(--red)}
+.header-actions{display:flex;align-items:center;gap:8px}
+.top-home,.nav-link{
+padding:9px 12px;color:#eee;background:transparent;
+border:1px solid #333;border-radius:8px;font-size:10px;cursor:pointer
+}
+.top-home:hover,.nav-link:hover{
+background:var(--red);border-color:var(--red)
 }
 
-body {
-  background: #08090d;
-  font-family: Arial, sans-serif;
+/* MAIN */
+.container{
+width:min(1100px,94%);margin:auto;padding:18px 0 35px
+}
+.search-wrap{margin:8px 0 23px}
+.main-search{
+display:flex;align-items:center;gap:12px;
+padding:13px 16px;background:#171717;
+border:1px solid #333;border-radius:9px
+}
+.main-search:focus-within{border-color:var(--red)}
+.main-search>i{color:var(--red);font-size:17px}
+.main-search input{
+width:100%;min-width:0;color:white;background:transparent;
+border:0;outline:0;font-size:12px
+}
+.main-search input::placeholder{color:#888}
+
+/* SECTION HEADINGS */
+.section-block{margin:25px 0 32px}
+.section-heading{
+display:flex;align-items:center;justify-content:space-between;
+gap:10px;margin-bottom:15px
+}
+.section-heading h2{
+display:flex;align-items:center;gap:10px;
+margin:0;font-size:16px;font-weight:800
+}
+.section-heading h2:before{
+content:"";width:4px;height:22px;
+background:var(--red);border-radius:5px
+}
+.section-subtitle{color:#888;font-size:9px}
+.toolbar{
+display:flex;align-items:center;justify-content:space-between;
+gap:10px;margin-bottom:17px
+}
+.toolbar-side{display:flex;align-items:center;gap:9px}
+#countryFilter{
+max-width:170px;padding:9px 11px;color:white;
+background:#171717;border:1px solid #333;
+border-radius:8px;outline:0;font-size:10px
+}
+#countryFilter option{background:#171717}
+.result-count{color:#888;font-size:10px;white-space:nowrap}
+
+/* LATEST EPISODES */
+.latest-row{
+display:flex;gap:13px;overflow-x:auto;
+padding:3px 2px 14px;
+scroll-snap-type:x mandatory;
+scrollbar-width:thin;scrollbar-color:#555 transparent;
+-webkit-overflow-scrolling:touch
+}
+.latest-card{
+flex:0 0 235px;min-width:0;overflow:hidden;
+color:white;text-decoration:none;background:#171717;
+border:1px solid #292929;border-radius:10px;
+scroll-snap-align:start;transition:.2s
+}
+.latest-image-wrap{
+position:relative;aspect-ratio:16/9;overflow:hidden;background:#222
+}
+.latest-image{
+width:100%;height:100%;display:block;object-fit:cover;
+transition:transform .3s
+}
+.latest-overlay{
+position:absolute;inset:0;display:grid;place-items:center;
+background:#0005
+}
+.latest-play{
+display:grid;place-items:center;width:42px;height:42px;
+background:var(--red);border-radius:50%;font-size:14px;
+box-shadow:0 3px 20px #0008
+}
+.latest-info{padding:10px 11px 12px}
+.latest-series{color:#aaa;font-size:9px;margin-bottom:5px}
+.latest-title{font-size:12px;font-weight:700;line-height:1.8}
+.latest-meta{
+display:flex;justify-content:space-between;gap:8px;
+margin-top:8px;color:#888;font-size:9px
+}
+.latest-card:hover{border-color:var(--red);transform:translateY(-3px)}
+.latest-card:hover .latest-image{transform:scale(1.05)}
+
+/* SERIES - NETFLIX HORIZONTAL ROW */
+#results{
+display:flex;
+flex-wrap:nowrap;
+align-items:stretch;
+gap:11px;
+width:100%;
+overflow-x:auto;
+overflow-y:hidden;
+padding:3px 2px 15px;
+scroll-snap-type:x mandatory;
+scrollbar-width:thin;
+scrollbar-color:#555 transparent;
+-webkit-overflow-scrolling:touch;
+overscroll-behavior-x:contain
+}
+#results .card{
+flex:0 0 145px;
+width:145px;
+min-width:0;
+scroll-snap-align:start
 }
 
-.player-box {
-  width: 100%;
-  max-width: 950px;
-  margin: 20px auto;
-  background: #000;
-  border-radius: 12px;
+/* POSTER CARDS */
+.grid{
+display:grid;
+grid-template-columns:repeat(5,minmax(0,1fr));
+gap:17px 13px
+}
+.card{
+min-width:0;overflow:hidden;cursor:pointer;
+background:#171717;border:1px solid #292929;
+border-radius:9px;transition:.22s
+}
+.card-photo-button{
+position:relative;display:block;width:100%;
+padding:0;border:0;background:#222;overflow:hidden
+}
+.photo{
+display:block;width:100%;aspect-ratio:2/3;
+object-fit:cover;background:#222;transition:.3s
+}
+.photo-placeholder{
+display:grid;place-items:center;color:#fff;
+font-size:30px;font-weight:800;
+background:linear-gradient(145deg,#333,#111)
+}
+.poster-overlay{
+position:absolute;inset:0;display:flex;align-items:center;
+justify-content:center;
+background:linear-gradient(0deg,#000b,transparent 70%);
+opacity:0;transition:.2s
+}
+.poster-overlay span{
+display:grid;place-items:center;width:42px;height:42px;
+color:white;background:var(--red);border-radius:50%
+}
+.card-info{padding:9px 10px 11px}
+.name-ar{
+margin:0;color:#fff;font-size:11px;font-weight:800;
+line-height:1.9;overflow-wrap:anywhere
+}
+.name-en{
+direction:ltr;text-align:right;margin-top:3px;
+color:#999;font:10px Arial,sans-serif;overflow-wrap:anywhere
+}
+.card-meta{
+display:flex;align-items:center;justify-content:space-between;
+gap:5px;margin-top:9px;padding-top:8px;
+border-top:1px solid #303030
+}
+.country-badge{
+max-width:65%;padding:4px 6px;color:#ddd;
+background:#292929;border-radius:5px;
+font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.card-hint{color:#aaa;font-size:8px}
+.card:hover{border-color:#777;transform:translateY(-3px)}
+.card:hover .photo{transform:scale(1.04);filter:brightness(.75)}
+.card:hover .poster-overlay{opacity:1}
+.card:active{transform:scale(.98)}
+
+/* EMPTY */
+.empty{
+grid-column:1/-1;
+flex:1 0 100%;
+padding:30px 15px;text-align:center;
+background:#171717;border:1px solid #292929;border-radius:10px
+}
+.empty i{color:var(--red);font-size:25px}
+.empty h3{margin:12px 0 6px;font-size:14px}
+.empty p{margin:0;color:#999;font-size:10px;line-height:2}
+
+/* MORE */
+.more-wrap{display:flex;justify-content:center;padding:18px 0}
+.more-btn{
+min-width:150px;padding:11px 18px;color:white;
+background:var(--red);border:0;border-radius:7px;
+font-size:11px;font-weight:700;cursor:pointer
+}
+.more-btn:hover{background:var(--red2)}
+
+/* MOVIES */
+.movie-label{color:var(--red)}
+
+/* FOOTER */
+footer{
+padding:24px 15px 30px;text-align:center;
+color:#888;border-top:1px solid #292929;
+font-size:10px;line-height:2.3
+}
+.footer-brand{color:white;font-size:14px;font-weight:800}
+.footer-brand span{color:var(--red)}
+
+/* BACK TOP */
+.back-top{
+position:fixed;z-index:90;left:15px;bottom:17px;
+display:grid;place-items:center;width:42px;height:42px;
+color:white;background:var(--red);border:0;border-radius:9px;
+opacity:0;visibility:hidden;transform:translateY(8px);
+transition:.2s;cursor:pointer
+}
+.back-top.visible{opacity:1;visibility:visible;transform:none}
+
+/* EPISODES PAGE */
+.episodes-view{
+min-height:calc(100vh - 65px);padding:0 0 35px;
+background:#090909
+}
+.episodes-container{width:min(1050px,94%);margin:auto}
+.episodes-nav{
+display:flex;align-items:center;justify-content:space-between;
+gap:10px;padding:17px 0
+}
+.back-library{
+display:inline-flex;align-items:center;gap:8px;
+padding:10px 13px;color:white;background:#222;
+border:1px solid #444;border-radius:7px;font-size:10px;cursor:pointer
+}
+.episodes-kicker{color:var(--red);font-size:10px;font-weight:800}
+.series-hero{
+position:relative;display:grid;grid-template-columns:155px 1fr;
+align-items:center;gap:20px;padding:18px;
+background:linear-gradient(120deg,#242424,#111);
+border:1px solid #333;border-radius:12px;overflow:hidden
+}
+.hero-poster{
+width:100%;aspect-ratio:2/3;object-fit:cover;
+border-radius:8px;background:#222
+}
+.hero-copy{min-width:0}
+.hero-label{
+display:inline-block;padding:6px 9px;color:white;
+background:var(--red);border-radius:5px;font-size:9px
+}
+.hero-title{
+margin:12px 0 4px;color:white;
+font-size:clamp(19px,4vw,28px);line-height:1.6
+}
+.hero-original{direction:ltr;text-align:right;color:#aaa;font:13px Arial}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.meta-chip{
+padding:7px 9px;color:#ddd;background:#222;
+border:1px solid #444;border-radius:6px;font-size:9px
+}
+.hero-description{margin:12px 0 0;color:#aaa;font-size:10px;line-height:2}
+.episodes-heading{
+display:flex;align-items:center;justify-content:space-between;
+gap:10px;margin:25px 0 14px
+}
+.episodes-heading h2{margin:0;font-size:15px}
+.episodes-heading h2 i{color:var(--red)}
+.season-select{
+max-width:150px;padding:9px 11px;color:white;
+background:#171717;border:1px solid #444;border-radius:7px;font-size:10px
+}
+.season-select option{background:#171717}
+.episodes-grid{
+display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px
+}
+.episode-card{
+display:flex;align-items:center;gap:11px;min-width:0;
+padding:9px;color:white;text-decoration:none;
+background:#171717;border:1px solid #303030;
+border-radius:9px;transition:.2s
+}
+.episode-card:hover{border-color:var(--red);transform:translateY(-2px)}
+.episode-thumb-wrap{
+position:relative;flex:0 0 125px;width:125px;
+aspect-ratio:16/10;overflow:hidden;border-radius:6px;background:#222
+}
+.episode-thumb{width:100%;height:100%;display:block;object-fit:cover}
+.episode-play{
+position:absolute;inset:0;display:grid;place-items:center;
+background:#0005
+}
+.episode-play i{
+display:grid;place-items:center;width:33px;height:33px;
+padding-right:2px;background:var(--red);border-radius:50%;font-size:11px
+}
+.episode-copy{flex:1;min-width:0}
+.episode-number{margin:0;font-size:11px;line-height:1.8}
+.episode-season{margin-top:4px;color:#999;font-size:8px}
+.episode-foot{
+display:flex;justify-content:space-between;gap:5px;
+margin-top:8px;color:#aaa;font-size:8px
+}
+.episode-heart{color:var(--red)}
+.episode-watch{color:#ddd}
+.no-episodes{
+grid-column:1/-1;padding:28px 15px;text-align:center;
+background:#171717;border:1px dashed #444;border-radius:10px
+}
+.no-episodes i{color:var(--red);font-size:25px}
+.no-episodes h3{font-size:13px}
+.no-episodes p{color:#999;font-size:10px;line-height:2}
+.episodes-footer{
+margin-top:30px;padding:18px;text-align:center;
+color:#888;border-top:1px solid #292929;font-size:10px
+}
+
+/* TABLET */
+@media(max-width:800px){
+.grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.episodes-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+#results .card{flex-basis:130px;width:130px}
+}
+
+/* MOBILE */
+@media(max-width:600px){
+.banner-inner{min-height:58px}
+.brand{font-size:15px}
+.brand-icon{width:33px;height:33px}
+.top-home{font-size:9px;padding:8px 10px}
+.container{padding-top:12px}
+.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 9px}
+.card-info{padding:8px}
+.name-ar{font-size:10px}
+.name-en{font-size:9px}
+.latest-card{flex-basis:205px}
+#results{gap:9px;padding-bottom:13px}
+#results .card{flex:0 0 112px;width:112px}
+.series-hero{grid-template-columns:105px 1fr;gap:13px;padding:12px}
+.hero-title{font-size:18px}
+.hero-description{font-size:9px}
+.episode-card{gap:8px;padding:7px}
+.episode-thumb-wrap{flex-basis:100px;width:100px}
+.episode-number{font-size:9px}
+}
+
+/* SMALL MOBILE */
+@media(max-width:390px){
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .episodes-grid{grid-template-columns:1fr}
+ .episode-thumb-wrap{flex-basis:125px;width:125px}
+
+ .series-hero{
+  grid-template-columns:65px 1fr;
+  gap:9px;
+  padding:9px;
+ }
+
+ .hero-poster{
+  display:block;
+  width:65px;
+  aspect-ratio:2/3;
+  object-fit:cover;
+ }
+}
+
+/* =================================
+   NOORBOX - PROFESSIONAL LAYOUT
+================================= */
+
+/* ترتيب الأقسام وتباعدها */
+.container{
+ display:flex;
+ flex-direction:column;
+ gap:34px;
+ padding-top:22px;
+ padding-bottom:45px;
+}
+
+.search-wrap{
+ margin:0;
+}
+
+.section-block{
+ width:100%;
+ margin:0;
+ padding:0 0 30px;
+ border-bottom:1px solid #252525;
+ position:relative;
+}
+
+.section-block:last-child{
+ border-bottom:0;
+ padding-bottom:0;
+}
+
+/* عناوين الأقسام */
+.section-heading{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ margin-bottom:19px;
+}
+
+.section-heading h2{
+ font-size:17px;
+ letter-spacing:-.3px;
+}
+
+.section-heading h2:before{
+ width:4px;
+ height:24px;
+ border-radius:10px;
+ box-shadow:0 0 12px #e5091466;
+}
+
+.section-subtitle{
+ color:#888;
+ font-size:10px;
+}
+
+/* كروت آخر الحلقات */
+.latest-row{
+ gap:15px;
+ padding:5px 3px 17px;
+}
+
+.latest-card{
+ flex:0 0 240px;
+ background:linear-gradient(145deg,#1c1c1c,#111);
+ border:1px solid #303030;
+ border-radius:12px;
+ box-shadow:0 5px 18px #0005;
+}
+
+.latest-image-wrap{
+ border-bottom:1px solid #303030;
+}
+
+.latest-info{
+ padding:12px;
+}
+
+.latest-title{
+ font-size:12px;
+ line-height:1.9;
+}
+
+.latest-card:hover{
+ border-color:#e50914;
+ box-shadow:0 8px 25px #e5091420;
+}
+
+/* كروت المسلسلات الأفقية */
+#results{
+ gap:14px;
+ padding:5px 3px 18px;
+ scrollbar-width:thin;
+}
+
+#results .card{
+ flex:0 0 150px;
+ width:150px;
+ border-radius:12px;
+ background:linear-gradient(160deg,#1c1c1c,#111);
+ border:1px solid #303030;
+ box-shadow:0 5px 16px #0005;
+}
+
+#results .photo{
+ aspect-ratio:2/3;
+ border-radius:0;
+}
+
+#results .card-info{
+ padding:11px 10px 12px;
+}
+
+#results .name-ar{
+ font-size:11px;
+ line-height:1.9;
+ min-height:21px;
+}
+
+#results .name-en{
+ font-size:10px;
+ color:#999;
+}
+
+#results .card-meta{
+ margin-top:10px;
+ padding-top:9px;
+ border-color:#333;
+}
+
+#results .card:hover{
+ border-color:#e50914;
+ transform:translateY(-4px);
+ box-shadow:0 9px 24px #e5091420;
+}
+
+/* كروت الأفلام */
+#moviesResults{
+ gap:18px 14px;
+}
+
+#moviesResults .card{
+ border-radius:12px;
+ background:linear-gradient(160deg,#1c1c1c,#111);
+ border:1px solid #303030;
+ box-shadow:0 5px 16px #0005;
+}
+
+#moviesResults .photo{
+ aspect-ratio:2/3;
+}
+
+#moviesResults .card-info{
+ padding:11px 10px 12px;
+}
+
+#moviesResults .name-ar{
+ font-size:12px;
+ line-height:1.9;
+}
+
+#moviesResults .name-en{
+ font-size:10px;
+}
+
+#moviesResults .card-meta{
+ border-color:#333;
+}
+
+#moviesResults .card:hover{
+ border-color:#e50914;
+ transform:translateY(-4px);
+ box-shadow:0 9px 24px #e5091420;
+}
+
+/* تحسين الصور والتأثيرات */
+.card-photo-button{
+ background:#202020;
+}
+
+.photo{
+ transition:transform .35s ease,filter .35s ease;
+}
+
+.poster-overlay{
+ background:linear-gradient(
+  0deg,
+  #000d 0%,
+  #0005 45%,
+  transparent 100%
+ );
+}
+
+.poster-overlay span{
+ box-shadow:0 4px 18px #0009;
+}
+
+/* شكل معلومات الكروت */
+.country-badge{
+ background:#292929;
+ border:1px solid #383838;
+}
+
+.card-hint{
+ white-space:nowrap;
+}
+
+/* زر عرض المزيد */
+.more-wrap{
+ padding:23px 0 0;
+}
+
+.more-btn{
+ border-radius:9px;
+ box-shadow:0 5px 18px #e5091425;
+ transition:.2s;
+}
+
+.more-btn:active{
+ transform:scale(.97);
+}
+
+/* شريط التمرير */
+.latest-row::-webkit-scrollbar,
+#results::-webkit-scrollbar{
+ height:5px;
+}
+
+.latest-row::-webkit-scrollbar-thumb,
+#results::-webkit-scrollbar-thumb{
+ background:#444;
+ border-radius:20px;
+}
+
+/* الهاتف */
+@media(max-width:600px){
+
+ .container{
+  gap:29px;
+  padding-top:17px;
+  padding-bottom:35px;
+ }
+
+ .section-block{
+  padding-bottom:25px;
+ }
+
+ .section-heading{
+  margin-bottom:16px;
+ }
+
+ .section-heading h2{
+  font-size:15px;
+ }
+
+ .latest-row{
+  gap:12px;
+ }
+
+ .latest-card{
+  flex-basis:215px;
+  border-radius:11px;
+ }
+
+ #results{
+  gap:12px;
+  padding-bottom:16px;
+ }
+
+ #results .card{
+  flex:0 0 130px;
+  width:130px;
+  border-radius:11px;
+ }
+
+ #results .card-info{
+  padding:9px;
+ }
+
+ #moviesResults{
+  gap:14px 10px;
+ }
+
+ #moviesResults .card{
+  border-radius:10px;
+ }
+
+ #moviesResults .card-info{
+  padding:9px;
+ }
+
+}
+
+/* الشاشات الصغيرة جداً */
+@media(max-width:390px){
+
+ .container{
+  gap:25px;
+ }
+
+ #results .card{
+  flex-basis:122px;
+  width:122px;
+ }
+
+ .latest-card{
+  flex-basis:205px;
+ }
+
+ #moviesResults{
+  gap:12px 9px;
+ }
+
+}
+
+/* تقليل الحركة */
+@media(prefers-reduced-motion:reduce){
+ .card,.latest-card,.photo{
+  transition:none!important;
+ }
+}
+/* SMART SEARCH */
+.smart-search-page{
+ display:none;
+ min-height:55vh;
+ padding:8px 0 35px;
+}
+
+.smart-search-page.active{
+ display:block;
+}
+
+.smart-search-heading{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ margin-bottom:20px;
+}
+
+.smart-search-heading h2{
+ margin:0;
+ font-size:17px;
+ font-weight:800;
+}
+
+.smart-search-heading h2 i{
+ color:var(--red);
+ margin-left:7px;
+}
+
+.smart-search-results{
+ display:grid;
+ grid-template-columns:repeat(5,minmax(0,1fr));
+ gap:18px 13px;
+}
+
+.smart-search-results .card{
+ animation:searchAppear .25s ease both;
+}
+
+.search-type{
+ color:#999;
+ font-size:10px;
+ margin-top:5px;
+}
+
+.smart-search-empty{
+ padding:45px 15px;
+ text-align:center;
+ background:#171717;
+ border:1px solid #292929;
+ border-radius:12px;
+}
+
+.smart-search-empty i{
+ color:var(--red);
+ font-size:32px;
+ margin-bottom:13px;
+}
+
+.smart-search-empty h3{
+ font-size:14px;
+ margin:8px 0;
+}
+
+.smart-search-empty p{
+ color:#999;
+ font-size:10px;
+}
+
+@keyframes searchAppear{
+ from{opacity:0;transform:translateY(10px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:800px){
+ .smart-search-results{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+ }
+}
+
+@media(max-width:600px){
+ .smart-search-results{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:13px 9px;
+ }
+}
+
+@media(max-width:390px){
+ .smart-search-results{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+ }
+}
+/* NOORBOX FLOATING AD */
+#floatingBanner {
+  position: fixed;
+  right: 10px;
+  bottom: 80px;
+  width: 320px;
+  height: 50px;
+  z-index: 99999;
+  background: #fff;
+  box-shadow: 0 2px 12px #0008;
+}
+
+#bannerContent {
+  width: 320px;
+  height: 50px;
   overflow: hidden;
-  box-shadow: 0 10px 35px #0008;
 }
 
-.player {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-}
-
-.player iframe {
+#closeBanner {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: -25px;
+  right: 0;
+  width: 25px;
+  height: 25px;
   border: 0;
+  border-radius: 4px 4px 0 0;
+  background: #e50914;
+  color: white;
+  font-size: 21px;
+  cursor: pointer;
 }
 
-@media(max-width:600px) {
-  .player-box {
-    margin: 0;
-    border-radius: 0;
+@media(max-width:340px) {
+  #floatingBanner {
+    right: 5px;
+    transform: scale(.9);
+    transform-origin: right bottom;
   }
+}
+/* MORE LATEST EPISODES */
+.latest-more-card {
+  flex: 0 0 110px;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: white;
+  background: #171717;
+  border: 1px solid #383838;
+  border-radius: 12px;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: .2s;
+}
+
+.latest-more-card i {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: white;
+  background: var(--red);
+  border-radius: 50%;
+  font-size: 17px;
+}
+
+.latest-more-card span {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.latest-more-card:hover {
+  border-color: var(--red);
+  background: #222;
+  transform: translateY(-3px);
+}
+
+.latest-more-card:active {
+  transform: scale(.96);
 }
 </style>
 </head>
 
 <body>
+<header class="top-banner">
+ <div class="banner-inner">
+  <a class="brand" href="#" id="brandHome">
+   <span class="brand-icon"><i class="fa-solid fa-play"></i></span>
+   <span class="brand-name">NOOR<span>BOX</span></span>
+  </a>
+  <div class="header-actions">
+   <button class="top-home" id="topHome"><i class="fa-solid fa-house"></i> الرئيسية</button>
+  </div>
+ </div>
+</header>
 
-<div class="player-box">
-  <div class="player">
-    <iframe
-      src="https://player.mediadelivery.net/play/798682/545ae7fe-0cf3-47b9-9411-7a209555ee05"
-      loading="lazy"
-      allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
-      allowfullscreen>
-    </iframe>
+<main class="container" id="libraryPage">
+
+ <section class="search-wrap">
+  <label class="main-search">
+   <i class="fa-solid fa-magnifying-glass"></i>
+   <input id="mainSearch" type="search" placeholder="ابحث عن مسلسل أو فيلم أو حلقة..." autocomplete="off">
+  </label>
+ </section>
+
+ <!-- آخر الحلقات -->
+ <section class="section-block" id="latestSection">
+  <div class="section-heading">
+   <h2>آخر الحلقات</h2>
+   <span class="section-subtitle">أضيفت حديثاً</span>
+  </div>
+  <div class="latest-row" id="latestEpisodes"></div>
+ </section>
+
+ <!-- المسلسلات -->
+ <section class="section-block" id="seriesSection">
+  <div class="section-heading">
+   <h2>المسلسلات</h2>
+   <span class="section-subtitle">جميع المسلسلات</span>
+  </div>
+
+  <div class="toolbar">
+   <div class="toolbar-side">
+    <select id="countryFilter">
+     <option value="">كل الدول</option>
+    </select>
+    <span class="result-count" id="count">0 مسلسل</span>
+   </div>
+  </div>
+
+  <section class="grid" id="results"></section>
+  <div class="more-wrap">
+   <button class="more-btn" id="showMore" hidden>عرض المزيد +</button>
+  </div>
+ </section>
+
+ <!-- الأفلام -->
+ <section class="section-block" id="moviesSection">
+  <div class="section-heading">
+   <h2>الأفلام</h2>
+   <span class="section-subtitle">أفلام نور بوكس</span>
+  </div>
+  <section class="grid" id="moviesResults"></section>
+ </section>
+
+<!-- البحث الذكي -->
+<section class="smart-search-page" id="smartSearchPage">
+  <div class="smart-search-heading">
+    <h2><i class="fa-solid fa-magnifying-glass"></i> نتائج البحث</h2>
+    <span class="section-subtitle" id="smartSearchCount"></span>
+  </div>
+  <div class="smart-search-results" id="smartSearchResults"></div>
+</section>
+
+</main>
+
+
+<!-- صفحة الحلقات -->
+<section class="episodes-view" id="episodesPage" hidden>
+ <div class="episodes-container">
+  <div class="episodes-nav">
+   <button class="back-library" id="backLibrary">
+    <i class="fa-solid fa-arrow-right"></i> العودة للرئيسية
+   </button>
+   <span class="episodes-kicker">NOORBOX • EPISODES</span>
+  </div>
+
+  <section class="series-hero">
+   <img class="hero-poster" id="heroPoster" alt="بوستر المسلسل">
+   <div class="hero-copy">
+    <span class="hero-label"><i class="fa-solid fa-play"></i> مكتبة الحلقات</span>
+    <h1 class="hero-title" id="heroTitle"></h1>
+    <div class="hero-original" id="heroOriginal"></div>
+    <div class="hero-meta">
+     <span class="meta-chip"><i class="fa-solid fa-film"></i> <span id="heroEpisodeCount"></span></span>
+     <span class="meta-chip"><i class="fa-solid fa-earth-americas"></i> <span id="heroCountry"></span></span>
+    </div>
+    <p class="hero-description" id="heroDescription"></p>
+   </div>
+  </section>
+
+  <div class="episodes-heading">
+   <h2><i class="fa-solid fa-play-circle"></i> حلقات المسلسل</h2>
+   <select class="season-select" id="seasonFilter"></select>
+  </div>
+
+  <div class="episodes-grid" id="episodesGrid"></div>
+  <div class="episodes-footer">NOORBOX • مشاهدة ممتعة</div>
+ </div>
+</section>
+
+<footer id="libraryFooter">
+ <div class="footer-brand">NOOR<span style="color:#e50914">BOX</span></div>
+ <div>مسلسلات وأفلام نور بوكس • عالمك الترفيهي</div>
+ <div>جميع الحقوق محفوظة © <span id="year"></span></div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="العودة للأعلى">
+ <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+"use strict";
+
+/*
+إضافة حلقة:
+{season:1,number:1,title:"الحلقة الأولى",image:"رابط الصورة",link:"رابط المشاهدة"}
+
+إضافة فيلم:
+{nameAr:"اسم الفيلم",nameEn:"Movie Name",country:"تركية 🇹🇷",image:"رابط البوستر",link:"رابط المشاهدة",aliases:[]}
+*/
+
+const PAGE_SIZE = 12;
+let latestVisibleCount = 12;
+const SMARTLINK = "https://asiafilm.org/4/c9b6b8f510ce97c4bc7dcd5053a6a9ae";
+
+function openPlayAd() {
+  const adWindow = window.open(SMARTLINK, "_blank");
+  if (adWindow) {
+    try { adWindow.opener = null } catch (e) {}
+  }
+}
+const actors=[
+  {
+  nameAr: "في السابعة عشر",
+  nameEn: "At Seventeen",
+  initials: "17",
+  country: "تركية 🇹🇷",
+  image: "https://videotourl.com/images/1794002498388-ea8ec42c-c4b8-44d9-9b9c-99779a6780b8.webp",
+  aliases: ["في السابعة عشر", "في السابعه عشر", "At Seventeen"],
+  description: "تابع حلقات مسلسل في السابعة عشر واختر الحلقة التي تريد مشاهدتها.",
+  episodes: []
+},
+ {
+  nameAr:"تحت الأرض",
+  nameEn:"YERALTI",
+  initials:"Y",
+  country:"تركية 🇹🇷",
+  image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+  aliases:["YERALTI","Yeraltı","تحت الأرض","تحت الارض","يرالتي","Yer Alti"],
+  description:"تابع حلقات مسلسل تحت الأرض واختر الحلقة التي تريد مشاهدتها.",
+  episodes:[
+    {
+      season:1,number:1,title:"الحلقة 1",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_96"
+    },
+    {
+      season:1,number:2,title:"الحلقة 2",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_97"
+    },
+    {
+      season:1,number:3,title:"الحلقة 3",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_98"
+    },
+    {
+      season:1,number:4,title:"الحلقة 4",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_99"
+    },
+    {
+      season:1,number:5,title:"الحلقة 5",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_100"
+    },
+    {
+      season:1,number:6,title:"الحلقة 6",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_101"
+    },
+    {
+      season:1,number:7,title:"الحلقة 7",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_102"
+    },
+    {
+      season:1,number:8,title:"الحلقة 8",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_103"
+    },
+    {
+      season:1,number:9,title:"الحلقة 9",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_104"
+    },
+    {
+      season:1,number:10,title:"الحلقة 10",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_105"
+    },
+        {
+      season:1,number:11,title:"الحلقة 11",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_106"
+    },
+    {
+      season:1,number:12,title:"الحلقة 12",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_107"
+    },
+    {
+      season:1,number:13,title:"الحلقة 13",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_108"
+    },
+    {
+      season:1,number:14,title:"الحلقة 14",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_109"
+    },
+    {
+      season:1,number:15,title:"الحلقة 15",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_110"
+    },
+    {
+      season:1,number:16,title:"الحلقة 16",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_111"
+    },
+    {
+      season:1,number:17,title:"الحلقة 17",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_112"
+    },
+    {
+      season:1,number:18,title:"الحلقة 18",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_113"
+    },
+    {
+      season:1,number:19,title:"الحلقة 19",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_114"
+    },
+    {
+      season:1,number:20,title:"الحلقة 20",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_115"
+    },
+    {
+      season:1,number:21,title:"الحلقة 21",
+      image:"https://videotourl.com/images/1794002957880-83089573-5cd2-4f97-abff-80ddedc07683.webp",
+      link:"https://t.me/shooflivelinksbot?start=ep_116"
+    },
+  ]
+ },
+ {
+  nameAr:"حلم أشرف",
+  nameEn:"Eşref Rüya",
+  initials:"ح",
+  country:"تركية 🇹🇷",
+  image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+  aliases:["Eşref Rüya","Ashraf's Dream","حلم اشرف","أشرف"],
+  description:"تابع حلقات مسلسل حلم أشرف واختر الموسم والحلقة.",
+  episodes:[
+{
+    season:1,number:1,title:"الحلقة 1",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_3"
+},
+{
+    season:1,number:2,title:"الحلقة 2",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_4"
+},
+{
+    season:1,number:3,title:"الحلقة 3",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_6"
+},
+{
+    season:1,number:4,title:"الحلقة 4",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_7"
+},
+{
+    season:1,number:5,title:"الحلقة 5",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_8"
+},
+{
+    season:1,number:6,title:"الحلقة 6",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_9"
+},
+{
+    season:1,number:7,title:"الحلقة 7",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_10"
+},
+{
+    season:1,number:8,title:"الحلقة 8",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_11"
+},
+{
+    season:1,number:9,title:"الحلقة 9",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_12"
+},
+{
+    season:1,number:10,title:"الحلقة 10",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_13"
+},
+{
+    season:1,number:11,title:"الحلقة 11",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_14"
+},
+{
+    season:1,number:12,title:"الحلقة 12",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_15"
+},
+{
+    season:1,number:13,title:"الحلقة 13",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_16"
+},
+{
+    season:1,number:14,title:"الحلقة 14",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_19"
+},
+{
+    season:1,number:15,title:"الحلقة 15",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_20"
+},
+{
+    season:1,number:16,title:"الحلقة 16",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_21"
+},
+{
+    season:1,number:17,title:"الحلقة 17",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_22"
+},
+{
+    season:1,number:18,title:"الحلقة 18",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_23"
+},
+{
+    season:1,number:19,title:"الحلقة 19",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_24"
+},
+{
+    season:1,number:20,title:"الحلقة 20",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_25"
+},
+{
+    season:1,number:21,title:"الحلقة 21",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_26"
+},
+{
+    season:1,number:22,title:"الحلقة 22",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_27"
+},
+{
+    season:1,number:23,title:"الحلقة 23",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_28"
+},
+{
+    season:1,number:24,title:"الحلقة 24",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_29"
+},
+{
+    season:1,number:25,title:"الحلقة 25",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_30"
+},
+{
+    season:1,number:26,title:"الحلقة 26",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_31"
+},
+{
+    season:1,number:27,title:"الحلقة 27",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_32"
+},
+{
+    season:1,number:28,title:"الحلقة 28",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_33"
+},
+{
+    season:1,number:29,title:"الحلقة 29",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_34"
+},
+{
+    season:1,number:30,title:"الحلقة 30",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_35"
+},
+{
+    season:1,number:31,title:"الحلقة 31",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_36"
+},
+{
+    season:1,number:32,title:"الحلقة 32",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_37"
+},
+{
+    season:1,number:33,title:"الحلقة 33",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_38"
+},
+{
+    season:1,number:34,title:"الحلقة 34",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_39"
+},
+{
+    season:1,number:35,title:"الحلقة 35",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_40"
+},
+{
+    season:1,number:36,title:"الحلقة 36",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_41"
+},
+{
+    season:1,number:37,title:"الحلقة 37",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_42"
+},
+{
+    season:1,number:38,title:"الحلقة 38",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_43"
+},
+{
+    season:1,number:39,title:"الحلقة 39",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_44"
+},
+{
+    season:1,number:40,title:"الحلقة 40",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_45"
+},
+{
+    season:1,number:41,title:"الحلقة 41",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_46"
+},
+{
+    season:1,number:42,title:"الحلقة 42",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_47"
+},
+{
+    season:1,number:43,title:"الحلقة 43",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_48"
+},
+{
+    season:1,number:44,title:"الحلقة 44",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_49"
+},
+{
+    season:1,number:45,title:"الحلقة 45",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_50"
+},
+{
+    season:1,number:46,title:"الحلقة 46",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_51"
+},
+{
+    season:1,number:47,title:"الحلقة 47 والأخيرة",
+    image:"https://videotourl.com/images/1794001592528-5f7bf83b-b88c-4eee-9960-85f478b6c94a.jpg",
+    link:"https://t.me/shooflivelinksbot?start=ep_52"
+}
+  ]
+ },
+ 
+];
+
+/* أضف أفلامك هنا */
+const movies=[];
+
+const $=id=>document.getElementById(id);
+let currentQuery="";
+let visibleCount=PAGE_SIZE;
+let currentSeries=null;
+let previousScroll=0;
+
+const libraryPage=$("libraryPage");
+const episodesPage=$("episodesPage");
+const libraryFooter=$("libraryFooter");
+
+function makeElement(tag,cls="",text){
+ const el=document.createElement(tag);
+ if(cls)el.className=cls;
+ if(text!==undefined)el.textContent=text;
+ return el;
+}
+
+function safeUrl(value){
+ if(!value)return "";
+ try{
+  const u=new URL(String(value).trim());
+  return ["https:","http:"].includes(u.protocol)?u.href:"";
+ }catch(e){return ""}
+}
+
+function normalize(value){
+ return String(value||"").normalize("NFKC").toLocaleLowerCase()
+ .replace(/[أإآ]/g,"ا").replace(/ى/g,"ي").replace(/ة/g,"ه")
+ .replace(/[ًٌٍَُِّْـ]/g,"")
+ .replace(/[^\p{L}\p{N}\s]/gu," ")
+ .replace(/\s+/g," ").trim();
+}
+
+function photoNode(url,cls,fallbackText,alt){
+ const safe=safeUrl(url);
+ if(!safe){
+  const d=makeElement("div",cls+" photo-placeholder",fallbackText||"؟");
+  d.setAttribute("role","img");
+  d.setAttribute("aria-label",alt||"صورة غير متاحة");
+  return d;
+ }
+ const img=makeElement("img",cls);
+ img.src=safe;img.alt=alt||"صورة";
+ img.loading="lazy";img.decoding="async";
+ img.referrerPolicy="no-referrer";
+ img.addEventListener("error",()=>{
+  if(img.isConnected){
+   const d=makeElement("div",cls+" photo-placeholder",fallbackText||"؟");
+   img.replaceWith(d);
+  }
+ },{once:true});
+ return img;
+}
+
+function episodeCount(series){
+ return (series.episodes||[]).filter(e=>safeUrl(e.link)).length;
+}
+
+/* البحث */
+function matchesSearch(item){
+ const words=normalize(currentQuery).split(" ").filter(Boolean);
+ if(!words.length)return true;
+ const hay=normalize([
+  item.nameAr,item.nameEn,item.country,
+  ...(item.aliases||[]),...(item.tags||[]),
+  ...(item.episodes||[]).map(e=>e.title)
+ ].join(" "));
+ return words.every(w=>hay.includes(w));
+}
+
+function fillCountries(){
+ const select=$("countryFilter");
+ const old=select.value;
+ select.replaceChildren(new Option("كل الدول",""));
+ [...new Set(actors.map(a=>a.country).filter(Boolean))]
+ .sort((a,b)=>a.localeCompare(b,"ar"))
+ .forEach(c=>select.add(new Option(c,c)));
+ if([...select.options].some(o=>o.value===old))select.value=old;
+}
+
+/* كرت المسلسل */
+function createCard(actor,index){
+ const card=makeElement("article","card");
+ card.tabIndex=0;
+ card.setAttribute("role","button");
+ card.setAttribute("aria-label","عرض حلقات "+actor.nameAr);
+ card.style.animationDelay=Math.min(index*25,200)+"ms";
+
+ const photo=makeElement("div","card-photo-button");
+ photo.appendChild(photoNode(actor.image,"photo",actor.initials,actor.nameAr));
+ const overlay=makeElement("div","poster-overlay");
+ const play=makeElement("span");
+ play.innerHTML='<i class="fa-solid fa-play"></i>';
+ overlay.appendChild(play);
+ photo.appendChild(overlay);
+
+ const info=makeElement("div","card-info");
+ info.appendChild(makeElement("h3","name-ar",actor.nameAr||actor.nameEn));
+ info.appendChild(makeElement("div","name-en",actor.nameEn||""));
+
+ const meta=makeElement("div","card-meta");
+ meta.appendChild(makeElement("span","country-badge",actor.country||"مسلسل"));
+ meta.appendChild(makeElement("span","card-hint",episodeCount(actor)+" حلقة"));
+ info.appendChild(meta);
+
+ card.append(photo,info);
+ const open=()=>openEpisodes(actor);
+ card.addEventListener("click",open);
+ card.addEventListener("keydown",e=>{
+  if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}
+ });
+ return card;
+}
+
+/* كرت الفيلم */
+function createMovieCard(movie,index){
+ const card=makeElement("article","card");
+ card.tabIndex=0;
+ card.setAttribute("role","link");
+
+ const photo=makeElement("div","card-photo-button");
+ photo.appendChild(photoNode(movie.image,"photo",movie.initials||"ف",movie.nameAr));
+ const overlay=makeElement("div","poster-overlay");
+ const play=makeElement("span");
+ play.innerHTML='<i class="fa-solid fa-play"></i>';
+ overlay.appendChild(play);
+ photo.appendChild(overlay);
+
+ const info=makeElement("div","card-info");
+ info.appendChild(makeElement("h3","name-ar",movie.nameAr||movie.nameEn));
+ info.appendChild(makeElement("div","name-en",movie.nameEn||""));
+ const meta=makeElement("div","card-meta");
+ meta.appendChild(makeElement("span","country-badge",movie.country||"فيلم"));
+ meta.appendChild(makeElement("span","card-hint","مشاهدة الفيلم"));
+ info.appendChild(meta);
+ card.append(photo,info);
+
+ const open=()=>{
+  const url=safeUrl(movie.link);
+  if(url)window.open(url,"_blank","noopener,noreferrer");
+ };
+ card.addEventListener("click",open);
+ card.addEventListener("keydown",e=>{
+  if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}
+ });
+ return card;
+}
+
+/* آخر الحلقات */
+
+function renderLatest(){
+ const target=$("latestEpisodes");
+ target.replaceChildren();
+
+ const latest=[];
+
+ actors.forEach(series => {
+  [...(series.episodes || [])].reverse().forEach(ep => {
+    const link = safeUrl(ep.link);
+    if (!link) return;
+    latest.push({ series, ep, link });
+  });
+});
+
+ if(!latest.length){
+  const empty=makeElement("div","empty");
+  empty.style.minWidth="100%";
+  empty.append(
+   makeElement("i","fa-solid fa-clapperboard"),
+   makeElement("h3","","لا توجد حلقات مضافة"),
+   makeElement("p","","ستظهر أحدث الحلقات هنا عند إضافتها إلى المسلسلات.")
+  );
+  target.appendChild(empty);
+  return;
+ }
+
+ // عرض 12 حلقة في كل مرة
+ const visible=latest.slice(0,latestVisibleCount);
+
+ visible.forEach(({series,ep,link})=>{
+  const card=makeElement("a","latest-card");
+  card.href=link;
+  card.target="_blank";
+  card.rel="noopener noreferrer";
+
+  let adShown=false;
+
+  card.addEventListener("click",function(e){
+   if(!adShown){
+    e.preventDefault();
+    adShown=true;
+    openPlayAd();
+   }
+  });
+
+  const imageWrap=makeElement("div","latest-image-wrap");
+
+  imageWrap.appendChild(photoNode(
+   ep.image||series.image,
+   "latest-image",
+   series.initials,
+   "صورة الحلقة"
+  ));
+
+  const overlay=makeElement("div","latest-overlay");
+  const play=makeElement("span","latest-play");
+  play.innerHTML='<i class="fa-solid fa-play"></i>';
+  overlay.appendChild(play);
+  imageWrap.appendChild(overlay);
+
+  const info=makeElement("div","latest-info");
+  info.appendChild(makeElement("div","latest-series",series.nameAr));
+  info.appendChild(makeElement("div","latest-title",ep.title||"الحلقة "+ep.number));
+
+  const meta=makeElement("div","latest-meta");
+  meta.appendChild(makeElement("span","","الموسم "+(ep.season||1)));
+  meta.appendChild(makeElement("span","","مشاهدة الحلقة ←"));
+  info.appendChild(meta);
+
+  card.append(imageWrap,info);
+  target.appendChild(card);
+ });
+
+ // كرت عرض المزيد في نهاية الحلقات
+ if(latestVisibleCount<latest.length){
+  const remaining=latest.length-latestVisibleCount;
+
+  const more=makeElement("button","latest-more-card");
+  more.type="button";
+
+  more.append(
+   makeElement("i","fa-solid fa-plus"),
+   makeElement("span","","عرض المزيد"),
+   makeElement("small","","+"+Math.min(12,remaining)+" حلقة")
+  );
+
+  more.addEventListener("click",()=>{
+   latestVisibleCount+=12;
+   renderLatest();
+  });
+
+  target.appendChild(more);
+ }
+}
+
+
+/* عرض المسلسلات */
+function renderLibrary(){
+ const country=$("countryFilter").value;
+ const list=actors.filter(a=>
+  matchesSearch(a)&&(!country||a.country===country)
+ );
+ const target=$("results");
+ target.replaceChildren();
+ $("count").textContent=list.length+" مسلسل";
+
+ if(!list.length){
+  const empty=makeElement("div","empty");
+  empty.append(
+   makeElement("i","fa-solid fa-magnifying-glass"),
+   makeElement("h3","","ما لقينا نتائج"),
+   makeElement("p","","جرّب اسماً آخر أو اختَر دولة مختلفة.")
+  );
+  target.appendChild(empty);
+  $("showMore").hidden=true;
+  return;
+ }
+
+ const frag=document.createDocumentFragment();
+ list.slice(0,visibleCount).forEach((a,i)=>{
+  frag.appendChild(createCard(a,i));
+ });
+ target.appendChild(frag);
+
+ const remaining=list.length-Math.min(visibleCount,list.length);
+ $("showMore").hidden=remaining<=0;
+ $("showMore").textContent="عرض المزيد + ("+Math.min(PAGE_SIZE,remaining)+")";
+}
+/* البحث الذكي الموحد */
+function renderSmartSearch() {
+  const page = $("smartSearchPage");
+  const results = $("smartSearchResults");
+  const query = normalize(currentQuery);
+  
+  const searching = query.length > 0;
+  
+  $("latestSection").hidden = searching;
+  $("seriesSection").hidden = searching;
+  $("moviesSection").hidden = searching;
+  
+  page.classList.toggle("active", searching);
+  
+  if (!searching) {
+    results.replaceChildren();
+    return;
+  }
+  
+  results.replaceChildren();
+  
+  const seriesList = actors.filter(matchesSearch);
+  const movieList = movies.filter(matchesSearch);
+  
+  const total = seriesList.length + movieList.length;
+  
+  $("smartSearchCount").textContent = total + " نتيجة";
+  
+  if (!total) {
+    const empty = makeElement("div", "smart-search-empty");
+    empty.style.gridColumn = "1/-1";
+    
+    empty.append(
+      makeElement("i", "fa-solid fa-magnifying-glass"),
+      makeElement("h3", "", "لم نعثر على نتائج"),
+      makeElement("p", "", "جرّب البحث باسم آخر أو بكلمات مختلفة.")
+    );
+    
+    results.appendChild(empty);
+    return;
+  }
+  
+  seriesList.forEach((item, index) => {
+    results.appendChild(createCard(item, index));
+  });
+  
+  movieList.forEach((item, index) => {
+    results.appendChild(createMovieCard(item, index));
+  });
+}
+/* عرض الأفلام */
+function renderMovies(){
+ const target=$("moviesResults");
+ target.replaceChildren();
+
+ const list=movies.filter(matchesSearch);
+
+ if(!list.length){
+  const empty=makeElement("div","empty");
+  empty.append(
+   makeElement("i","fa-solid fa-film"),
+   makeElement("h3","","الأفلام قيد الإضافة"),
+   makeElement("p","","ستظهر الأفلام هنا عند إضافة بياناتها إلى قائمة movies في الكود.")
+  );
+  target.appendChild(empty);
+  return;
+ }
+
+ list.forEach((movie,i)=>target.appendChild(createMovieCard(movie,i)));
+}
+
+/* صفحة الحلقات */
+function openEpisodes(series) {
+  currentSeries = series;
+  previousScroll = window.scrollY;
+  
+  $("heroTitle").textContent = series.nameAr || series.nameEn || "المسلسل";
+  $("heroOriginal").textContent = series.nameEn || "";
+  $("heroCountry").textContent = series.country || "غير محدد";
+  $("heroDescription").textContent = series.description || "اختر الحلقة التي تريد مشاهدتها.";
+  $("heroEpisodeCount").textContent = episodeCount(series) + " حلقة متاحة";
+  
+  const hero = $("heroPoster");
+  const image = safeUrl(series.image);
+  
+  hero.onerror = () => {
+    hero.onerror = null;
+    hero.removeAttribute("src");
+    hero.style.visibility = "visible";
+    hero.alt = "صورة المسلسل غير متاحة";
+  };
+  
+  hero.onload = () => {
+    hero.style.visibility = "visible";
+  };
+  
+  hero.style.visibility = "visible";
+  
+  if (image) {
+    hero.src = image;
+  } else {
+    hero.removeAttribute("src");
+    hero.style.visibility = "visible";
+  }
+  
+  renderEpisodes();
+  
+  libraryPage.hidden = true;
+  libraryFooter.hidden = true;
+  episodesPage.hidden = false;
+  
+  $("backTop").classList.remove("visible");
+  
+  window.scrollTo({ top: 0, behavior: "instant" });
+  history.pushState({ page: "episodes" }, "", "#episodes");
+}
+
+function renderEpisodes() {
+  const series = currentSeries;
+  const grid = $("episodesGrid");
+  const seasonSelect = $("seasonFilter");
+  
+  grid.replaceChildren();
+  
+  const episodes = (series.episodes || []).filter(e => safeUrl(e.link));
+  
+  const seasons = [...new Set(
+    episodes.map(e => Number(e.season) || 1)
+  )].sort((a, b) => a - b);
+  
+  const previous = seasonSelect.value;
+  seasonSelect.replaceChildren();
+  
+  if (!seasons.length) {
+    seasonSelect.add(new Option("الموسم 1", "1"));
+    
+    const empty = makeElement("div", "no-episodes");
+    
+    empty.append(
+      makeElement("i", "fa-solid fa-film"),
+      makeElement("h3", "", "الحلقات قيد الإضافة"),
+      makeElement("p", "", "لم تتم إضافة حلقات لهذا المسلسل بعد.")
+    );
+    
+    grid.appendChild(empty);
+    return;
+  }
+  
+  seasons.forEach(s => {
+    seasonSelect.add(new Option("الموسم " + s, String(s)));
+  });
+  
+  if (seasons.includes(Number(previous))) {
+    seasonSelect.value = previous;
+  }
+  
+  const selected = Number(seasonSelect.value) || seasons[0];
+  
+  episodes
+    .filter(e => (Number(e.season) || 1) === selected)
+    .sort((a, b) => (Number(a.number) || 0) - (Number(b.number) || 0))
+    .forEach(ep => {
+      const link = safeUrl(ep.link);
+      if (!link) return;
+      
+      const card = makeElement("a", "episode-card");
+      
+      card.href = link;
+card.target = "_blank";
+card.rel = "noopener noreferrer";
+
+let adShown = false;
+
+card.addEventListener("click", function(e) {
+  if (!adShown) {
+    e.preventDefault();
+    adShown = true;
+    openPlayAd();
+    return;
+  }
+  
+  // الضغطة الثانية تفتح رابط الحلقة مباشرة
+});
+      
+      const thumb = makeElement("div", "episode-thumb-wrap");
+      
+      const image = safeUrl(ep.image) || safeUrl(series.image);
+      
+      thumb.appendChild(
+        photoNode(image, "episode-thumb", series.initials, "صورة الحلقة")
+      );
+      
+      const play = makeElement("span", "episode-play");
+      play.innerHTML = '<i class="fa-solid fa-play"></i>';
+      
+      thumb.appendChild(play);
+      
+      const copy = makeElement("div", "episode-copy");
+      const number = Number(ep.number) || 1;
+      
+      copy.append(
+        makeElement("h3", "episode-number", ep.title || "الحلقة " + number),
+        makeElement(
+          "div",
+          "episode-season",
+          "الموسم " + (Number(ep.season) || 1) + " · الحلقة " + number
+        )
+      );
+      
+      const foot = makeElement("div", "episode-foot");
+      
+      foot.append(
+        makeElement("span", "episode-heart", "●"),
+        makeElement("span", "episode-watch", "مشاهدة ←")
+      );
+      
+      copy.appendChild(foot);
+      
+      card.append(thumb, copy);
+      grid.appendChild(card);
+    });
+}
+
+function backToLibrary(fromPop = false) {
+  if (episodesPage.hidden) return;
+  
+  episodesPage.hidden = true;
+  libraryPage.hidden = false;
+  libraryFooter.hidden = false;
+  
+  currentSeries = null;
+  
+  window.scrollTo({
+    top: previousScroll,
+    behavior: "instant"
+  });
+  
+  if (!fromPop && location.hash === "#episodes") {
+    history.back();
+  }
+}
+
+/* الأحداث */
+$("backLibrary").addEventListener("click", () => backToLibrary());
+
+$("seasonFilter").addEventListener("change", renderEpisodes);
+
+$("showMore").addEventListener("click", () => {
+  visibleCount += PAGE_SIZE;
+  renderLibrary();
+});
+
+$("mainSearch").addEventListener("input", () => {
+  currentQuery = $("mainSearch").value;
+  visibleCount = PAGE_SIZE;
+  
+  renderLibrary();
+  renderMovies();
+  renderSmartSearch();
+});
+
+$("countryFilter").addEventListener("change",()=>{
+ visibleCount=PAGE_SIZE;
+ renderLibrary();
+});
+
+$("brandHome").addEventListener("click",e=>{
+ e.preventDefault();
+ if(!episodesPage.hidden)backToLibrary();
+ else window.scrollTo({top:0,behavior:"smooth"});
+});
+
+$("topHome").addEventListener("click",()=>{
+ if(!episodesPage.hidden)backToLibrary();
+ else window.scrollTo({top:0,behavior:"smooth"});
+});
+
+window.addEventListener("popstate",()=>{
+ if(!episodesPage.hidden)backToLibrary(true);
+});
+
+const backTop=$("backTop");
+window.addEventListener("scroll",()=>{
+ backTop.classList.toggle("visible",!episodesPage.hidden&&window.scrollY>250);
+},{passive:true});
+
+backTop.addEventListener("click",()=>{
+ window.scrollTo({top:0,behavior:"smooth"});
+});
+
+/* تشغيل الموقع */
+$("year").textContent=new Date().getFullYear();
+fillCountries();
+renderLatest();
+renderLibrary();
+renderMovies();
+</script>
+<!-- NOORBOX FLOATING AD -->
+<div id="floatingBanner">
+  <button id="closeBanner" aria-label="إغلاق الإعلان" onclick="document.getElementById('floatingBanner').remove()">×</button>
+  
+  <div id="bannerContent">
+    <script>
+      atOptions = {
+        'key': 'e9244913b4acc2f9ce9d662266f1e49a',
+        'format': 'iframe',
+        'height': 50,
+        'width': 320,
+        'params': {}
+      };
+    </script>
+    <script src="https://bauval.org/22/e9244913b4acc2f9ce9d662266f1e49a"></script>
   </div>
 </div>
-
 </body>
 </html>
